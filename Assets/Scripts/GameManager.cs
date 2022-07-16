@@ -238,6 +238,13 @@ public class GameManager : MonoBehaviour
             highscoreFlyIn.StartFly();
             PlayerPrefs.SetInt("Highscore", score);
         }
+
+        Invoke("RestartRoom", 2f);
+    }
+
+    private void RestartRoom()
+    {
+        Transitioner.Instance.TransitionToScene(0);
     }
 
     private void SyncPoints()
