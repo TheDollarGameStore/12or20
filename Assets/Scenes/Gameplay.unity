@@ -745,9 +745,11 @@ GameObject:
   - component: {fileID: 764983342}
   - component: {fileID: 764983341}
   - component: {fileID: 764983343}
+  - component: {fileID: 764983344}
+  - component: {fileID: 764983345}
   m_Layer: 0
   m_Name: TutorialButton
-  m_TagString: Untagged
+  m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -845,6 +847,35 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 16, y: 20}
   m_EdgeRadius: 0
+--- !u!114 &764983344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764983340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 250b049762e4a884fa44897209874b9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scene: 1
+--- !u!114 &764983345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 764983340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13320494e9460d14c86a48ee3989070d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amplitude: 0.25
+  settleSpeed: 0.01
+  wobbleFrequency: 6
+  wobbleOnStart: 0
 --- !u!1 &819015939
 GameObject:
   m_ObjectHideFlags: 0
