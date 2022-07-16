@@ -23,11 +23,17 @@ public class GameManager : MonoBehaviour
 
     private int drawnScore;
 
+    private int highscore;
+
     [SerializeField] private Text scoreText;
 
     [SerializeField] private AudioClip matchSound;
 
     [SerializeField] private AudioClip gameOverSound;
+
+    [SerializeField] private Text highscoreText;
+
+    [SerializeField] private FlyIn highscoreFlyIn;
 
     private void Awake()
     {
@@ -39,6 +45,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        highscore = PlayerPrefs.GetInt("Highscore", 0);
+        highscoreText.text = highscore.ToString();
         PopulateGrid();
         diceHolder.ShuffleDices();
         ScoreTally();
@@ -218,7 +226,17 @@ public class GameManager : MonoBehaviour
             {
                 //Do gameover stuff
                 SoundManager.instance.PlayNormal(gameOverSound);
+                Invoke("DoHighscoreStuff", 1.5f);
             }
+        }
+    }
+
+    private void DoHighscoreStuff()
+    {
+        if (score > highscore)
+        {
+            highscoreFlyIn.StartFly();
+            PlayerPrefs.SetInt("Highscore", score);
         }
     }
 
