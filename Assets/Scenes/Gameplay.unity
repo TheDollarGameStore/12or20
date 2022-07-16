@@ -727,6 +727,7 @@ GameObject:
   m_Component:
   - component: {fileID: 979511592}
   - component: {fileID: 979511591}
+  - component: {fileID: 979511593}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -801,6 +802,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &979511593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979511590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a6c302d2e009d54fa014994e067044e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  randomizeStart: 0
+  dir: {x: 0, y: 1}
+  speed: 1
 --- !u!1 &1001836746
 GameObject:
   m_ObjectHideFlags: 0
@@ -872,7 +888,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 10500
+  m_Text: 0
 --- !u!222 &1001836749
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1742,6 +1758,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   diceHolder: {fileID: 1021637617}
+  paused: 0
+  score: 0
+  scoreText: {fileID: 1001836748}
 --- !u!4 &2055646754 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3539927540798207206, guid: 9eb82d06cfe524d49bb32c1ca5538489, type: 3}

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +12,16 @@ public class GameManager : MonoBehaviour
     public static GameManager instance = null;
 
     public DiceHolder diceHolder;
+
+    [HideInInspector]
+    public bool paused;
+
+    [HideInInspector]
+    public int score;
+
+    private int drawnScore;
+
+    [SerializeField] private Text scoreText;
 
     private void Awake()
     {
@@ -24,6 +35,7 @@ public class GameManager : MonoBehaviour
     {
         PopulateGrid();
         diceHolder.ShuffleDices();
+        ScoreTally();
     }
 
     void PopulateGrid()
@@ -40,7 +52,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !paused)
         {
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
@@ -51,6 +63,16 @@ public class GameManager : MonoBehaviour
                     hit.collider.GetComponent<Cell>().PlaceDice();
                 }
             }
+        }
+    }
+
+    private void ScoreTally()
+    {
+        Invoke("ScoreTally", 0.025f);
+        if (drawnScore != score)
+        {
+            drawnScore += 1;
+            scoreText.text = drawnScore.ToString();
         }
     }
 
@@ -87,10 +109,7 @@ public class GameManager : MonoBehaviour
 
             for (int y = 0; y < 4; y++)
             {
-                if (slots[y, x].GetComponent<Cell>().dice != null)
-                {
-                    total += GetCellValue(y, x);
-                }
+                total += GetCellValue(y, x);
             }
 
             if (total == 12 || total == 20)
@@ -166,19 +185,53 @@ public class GameManager : MonoBehaviour
 
         if (matchedCells.Count != 0)
         {
+            paused = true;
             int points = 0;
 
             for (int i = 0; i < matchedCells.Count; i++)
             {
-                points += matchedCells[i].dice.GetComponent<Dice>().value;
-                matchedCells[i].dice.GetComponent<Dice>().Matched();
-                matchedCells[i].dice = null;
+                if (matchedCells[i].dice != null) //Whenever there's a duplicate dice in a multiple match, it will already have been removed
+                {
+                    points += matchedCells[i].dice.GetComponent<Dice>().value;
+                    matchedCells[i].dice.GetComponent<Dice>().Matched();
+                    matchedCells[i].dice = null;
+                }
             }
 
             points *= matchMultiplier;
 
-            Debug.Log("You scored: " + points);
+            score += points;
+
+            Invoke("Unpause", 1f);
         }
+        else
+        {
+            if (CheckGameOver())
+            {
+                //Do gameover stuff
+                Debug.Log("You lsoe");
+            }
+        }
+    }
+
+    private bool CheckGameOver()
+    {
+        for (int y = 0; y < 4; y++)
+        {
+            for (int x = 0; x < 4; x++)
+            {
+                if (slots[y, x].GetComponent<Cell>().dice == null)
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private void Unpause()
+    {
+        paused = false;
     }
 
     private int GetCellValue(int y, int x)
