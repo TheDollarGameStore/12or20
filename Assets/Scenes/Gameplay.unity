@@ -860,6 +860,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scene: 1
+  clickSound: {fileID: 8300000, guid: 3e85e177baf4ad04895f4620b781f881, type: 3}
 --- !u!114 &764983345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -969,7 +970,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 339513a11b99f4f4d8b60e3e0f937ad6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 70, y: 0}
+  offset: {x: 0, y: 40}
   highscoreSound: {fileID: 8300000, guid: 9d629339532f9714e91280af6838444b, type: 3}
 --- !u!1001 &873841929
 PrefabInstance:
