@@ -26,6 +26,7 @@ public class SoundManager : MonoBehaviour
 
     void Start()
     {
+        PlayerPrefs.DeleteAll();
         Invoke("StartFadingIn", 2f);
         AudioSource[] audioSources = GetComponents<AudioSource>();
         music = audioSources[0];

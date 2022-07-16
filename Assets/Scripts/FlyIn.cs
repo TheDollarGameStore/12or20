@@ -12,9 +12,12 @@ public class FlyIn : MonoBehaviour
 
     [SerializeField] private Vector2 offset;
 
+    [SerializeField] private AudioClip highscoreSound;
+
     public void StartFly()
     {
         flying = true;
+        SoundManager.instance.PlayNormal(highscoreSound);
     }
 
     void Start()

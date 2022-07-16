@@ -855,6 +855,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: 70, y: 0}
+  highscoreSound: {fileID: 8300000, guid: 9d629339532f9714e91280af6838444b, type: 3}
 --- !u!1001 &873841929
 PrefabInstance:
   m_ObjectHideFlags: 0
