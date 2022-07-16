@@ -209,7 +209,7 @@ public class GameManager : MonoBehaviour
             if (CheckGameOver())
             {
                 //Do gameover stuff
-                Debug.Log("You lsoe");
+                Debug.Log("You lose");
             }
         }
     }
