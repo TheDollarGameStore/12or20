@@ -10,10 +10,15 @@ public class Cell : MonoBehaviour
     [HideInInspector]
     public GameObject dice;
 
+    [SerializeField] private AudioClip shuffleDice;
+
+    [SerializeField] private AudioClip place;
+
     public void PlaceDice()
     {
         if (GameManager.instance.diceHolder.dices.Count != 0 && dice == null)
         {
+            SoundManager.instance.PlayRandomized(place);
             dice = GameManager.instance.diceHolder.dices[0];
             GameManager.instance.diceHolder.dices.RemoveAt(0);
             dice.transform.position = transform.position;
@@ -24,6 +29,7 @@ public class Cell : MonoBehaviour
             if (GameManager.instance.diceHolder.dices.Count == 0)
             {
                 GameManager.instance.diceHolder.Invoke("ShuffleDices", 1f);
+                SoundManager.instance.PlayRandomized(shuffleDice);
             }
         }
     }

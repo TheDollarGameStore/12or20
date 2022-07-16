@@ -71,3 +71,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d061f5df02f346949a482e1d8014f9fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  y: 0
+  x: 0
+  dice: {fileID: 0}
+  shuffleDice: {fileID: 8300000, guid: 04bd638d736309349b529369e7976c2a, type: 3}
+  place: {fileID: 8300000, guid: 301a8d61eb21f9540b65db89ec318ee2, type: 3}

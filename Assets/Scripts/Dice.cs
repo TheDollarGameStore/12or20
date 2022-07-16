@@ -12,6 +12,7 @@ public class Dice : MonoBehaviour
     [SerializeField] private GameObject explosion;
 
     [SerializeField] private List<Sprite> sprites;
+
     // Start is called before the first frame update
     void Start()
     {

@@ -19,9 +19,15 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public int score;
 
+    private int drawnScoreShouldBe;
+
     private int drawnScore;
 
     [SerializeField] private Text scoreText;
+
+    [SerializeField] private AudioClip matchSound;
+
+    [SerializeField] private AudioClip gameOverSound;
 
     private void Awake()
     {
@@ -69,7 +75,7 @@ public class GameManager : MonoBehaviour
     private void ScoreTally()
     {
         Invoke("ScoreTally", 0.025f);
-        if (drawnScore != score)
+        if (drawnScore != drawnScoreShouldBe)
         {
             drawnScore += 1;
             scoreText.text = drawnScore.ToString();
@@ -185,6 +191,7 @@ public class GameManager : MonoBehaviour
 
         if (matchedCells.Count != 0)
         {
+            SoundManager.instance.PlayRandomized(matchSound);
             paused = true;
             int points = 0;
 
@@ -203,15 +210,21 @@ public class GameManager : MonoBehaviour
             score += points;
 
             Invoke("Unpause", 1f);
+            Invoke("SyncPoints", 0.75f);
         }
         else
         {
             if (CheckGameOver())
             {
                 //Do gameover stuff
-                Debug.Log("You lose");
+                SoundManager.instance.PlayNormal(gameOverSound);
             }
         }
+    }
+
+    private void SyncPoints()
+    {
+        drawnScoreShouldBe = score;
     }
 
     private bool CheckGameOver()
