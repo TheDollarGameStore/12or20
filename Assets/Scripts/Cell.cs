@@ -13,7 +13,6 @@ public class Cell : MonoBehaviour
     [SerializeField] private AudioClip shuffleDice;
 
     [SerializeField] private AudioClip place;
-
     public void PlaceDice()
     {
         if (GameManager.instance.diceHolder.dices.Count != 0 && dice == null)
