@@ -14,11 +14,11 @@ public class DiceHolder : MonoBehaviour
     {
         dices = new List<GameObject>();
 
-        List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6 };
+        List<int> numbers = new List<int> { 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6};
 
-        while (numbers.Count != 0)
+        while (dices.Count != 6)
         {
-            GameObject newDice = Instantiate(dice, new Vector2(-40f + (16f * (6 - numbers.Count)), transform.position.y), Quaternion.identity);
+            GameObject newDice = Instantiate(dice, new Vector2(-40f + (16f * dices.Count), transform.position.y), Quaternion.identity);
 
             int pickValueIndex =Random.Range(0, numbers.Count);
 
