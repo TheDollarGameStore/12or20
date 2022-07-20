@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using CrazyGames;
 
 public class GameManager : MonoBehaviour
 {
@@ -244,6 +245,11 @@ public class GameManager : MonoBehaviour
 
     private void RestartRoom()
     {
+        if (PlayerPrefs.GetInt("Highscore", 0) != 0)
+        {
+            CrazyAds.Instance.beginAdBreak();
+        }
+
         Transitioner.Instance.TransitionToScene(0);
     }
 
